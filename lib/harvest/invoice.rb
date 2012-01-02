@@ -7,6 +7,7 @@ module Harvest
     attr_reader :line_items
     
     property :id
+    property :created_by_id
     property :subject
     property :number
     property :created_at
