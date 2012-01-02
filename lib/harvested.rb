@@ -24,6 +24,7 @@ require 'harvest/base'
 
 module Harvest
   VERSION = File.read(File.expand_path(File.join(File.dirname(__FILE__), '..', 'VERSION'))).strip
+  HARVEST_ITEMS_PER_PAGE = 50
   
   class << self
     

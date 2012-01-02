@@ -259,6 +259,13 @@ module Harvest
       @invoice_categories ||= Harvest::API::InvoiceCategories.new(credentials)
     end
 
+    # All API Actions surrounding invoices
+    #
+    # == Examples
+    #  harvest.invoices.all() # Returns all invoices (if there are more than 50, it will cycle thru pages
+    #  harvest.invoices.time('11/12/2009','12/12/2009') # returns all invoices between 11/12/2009 and 12/12/2009
+    #  
+    #  harvest.expenses.find(100) # Returns the expense with id = 100
     def invoices
       @invoices ||= Harvest::API::Invoices.new(credentials)
     end
