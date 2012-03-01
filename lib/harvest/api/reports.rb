@@ -20,9 +20,13 @@ module Harvest
         Harvest::TimeEntry.parse(JSON.parse(response.body).map {|h| h["day_entry"]})
       end
       
-      def expenses_by_user(user, start_date, end_date)
+      def expenses_by_user(user, start_date, end_date, options = {})
+        start_date = ::Time.parse(start_date) if String === start_date
+        end_date = ::Time.parse(end_date) if String === end_date
+        updated_since = ::Time.parse(options[:updated_since]) if String === options[:updated_since]
+		
         query = {:from => start_date.strftime("%Y%m%d"), :to => end_date.strftime("%Y%m%d")}
-        
+        query[:updated_since] = updated_since.strftime("%Y%m%d") unless options[:updated_since].nil?
         response = request(:get, credentials, "/people/#{user.to_i}/expenses", :query => query)
         Harvest::Expense.parse(response.parsed_response)
       end
