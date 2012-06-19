@@ -1,5 +1,5 @@
 module Harvest
-  class Invoice < Hashie::Dash
+  class Invoices < Hashie::Dash
     include Harvest::Model
     
     api_path '/invoices'
@@ -38,13 +38,16 @@ module Harvest
     property :kind
     property :import_hours
     property :import_expenses
-    
-    def self.json_root; "doc"; end
-    # skip_json_root true
+        
+    # The api is inconsistent as of June 19, 2012
+    # It returns invoices for "all" but invoice for "find"
+    # so we are skipping the root element and stringifying the 
+    # actual invoice item     
+    skip_json_root true
     
     def initialize(args = {})
       @line_items = []
-      args            = args.stringify_keys
+      args            = args.first[1].stringify_keys
       self.line_items = args.delete("csv_line_items")
       self.line_items = args.delete("line_items")
       super

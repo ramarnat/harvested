@@ -1,7 +1,7 @@
 module Harvest
   module API
     class Invoices < Base
-      api_model Harvest::Invoice
+      api_model Harvest::Invoices
       include Harvest::Behavior::Crud
       
       def all(user = nil)
