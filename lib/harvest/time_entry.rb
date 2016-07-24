@@ -18,7 +18,9 @@ module Harvest
     property :of_user
     property :is_closed
     property :is_billed
+    property :invoice_id
     property :timer_started_at
+    property :hours_with_timer
     property :adjustment_record
     
     skip_json_root true

@@ -19,6 +19,8 @@ module Harvest
     property :invoice_id
     property :has_receipt
     property :receipt_url
+    property :is_locked
+    property :locked_reason
 
     def initialize(args = {})
       args          = args.stringify_keys

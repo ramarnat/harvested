@@ -4,7 +4,7 @@ require 'vcr'
 
 Dir["#{File.dirname(__FILE__)}/support/**/*.rb"].each {|f| require File.expand_path(f) }
 
-VCR.config do |c|
+VCR.configure do |c|
   c.cassette_library_dir = '.cassettes'
   c.stub_with :webmock
 end
